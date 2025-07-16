@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EL POLLO LOCO</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/standard.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="init()">
+    <div class="page-container">
+      <div class="content" id="fullscreen">
+        <!-- <h1>EIL pollo loco</h1> -->
+        <div class="canvas-screen" id="canvas-screen">
+          <div class="canvas-screen-top flex-column">
+            <div class="flex">
+              <button
+                id="sound-btn-in-game"
+                class="img-btn sound-btn sound-btn-hover"
+                onclick="enableSound()"
+              >
+                <img
+                  class="sound-img"
+                  src="img/10_controls/sound-off.png"
+                  alt="sound"
+                  title="Sound"
+                />
+              </button>
+              <button
+                id="pause-btn-in-game"
+                class="img-btn sound-btn sound-btn-hover"
+                onclick="pauseGame()"
+                id="pause-btn"
+              >
+                <img
+                  id="pause-img"
+                  src="img/10_controls/pause.png"
+                  alt="pause"
+                  title="Pause"
+                />
+              </button>
+              <button
+                id="quit-btn-in-game"
+                class="img-btn sound-btn sound-btn-hover"
+                onclick="quitGame()"
+              >
+                <img
+                  id="stop-img"
+                  src="img/10_controls/quit.png"
+                  alt="go back"
+                  title="Quit"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="canvas-screen-bottom" id="canvas-screen-bottom">
+            <div class="flex canvas-screen-bottom-left">
+              <button id="mobile-left" class="mobile-control-btn">
+                <img
+                  class=""
+                  src="img/10_controls/MOBILE_LEFT_icon.png"
+                  alt="left"
+                  title="Left"
+                />
+              </button>
+              <button id="mobile-right" class="mobile-control-btn">
+                <img
+                  id=""
+                  src="img/10_controls/MOBILE_RIGHT_icon.png"
+                  alt="right"
+                  title="Right"
+                />
+              </button>
+            </div>
+            <div class="flex canvas-screen-bottom-right">
+              <button id="mobile-jump" class="mobile-control-btn">
+                <img
+                  id=""
+                  src="img/10_controls/MOBILE_JUMP_icon.png"
+                  alt="jump"
+                  title="Jump"
+                />
+              </button>
+              <button id="mobile-throw" class="mobile-control-btn">
+                <img
+                  id=""
+                  src="img/10_controls/MOBILE_THROW_icon.png"
+                  alt="throw"
+                  title="Throw"
+                />
+              </button>
+            </div>
+          </div>
+          <canvas
+            style="background-color: transparent"
+            width="720"
+            height="480"
+            id="canvas"
+          ></canvas>
+          <div id="canvas-overlay"></div>
+        </div>
+        <div class="rotate-screen game-screen flex d-none" id="rotate-screen">
+          <p>PLEASE ROTATE YOUR DEVICE TO PLAY</p>
+        </div>
+        <div class="start-screen game-screen" id="start-screen">
+          <button
+            class="text-btn sound-btn-hover start-game-btn"
+            onclick="startLoading()"
+          >
+            Start
+          </button>
+
+          <div class="start-screen-menu flex">
+            <button
+              class="img-btn sound-btn-hover"
+              onclick="toggleFullScreen()"
+              id="fullscreen-btn"
+            >
+              <img
+                id="full-screen-img"
+                src="img/10_controls/fullscreen_on.png"
+                alt="full screen"
+                title="Full Screen"
+              />
+            </button>
+            <button class="img-btn sound-btn-hover" onclick="enableSound()">
+              <img
+                class="sound-img"
+                src="img/10_controls/sound-on.png"
+                alt="full screen"
+                title="Full Screen"
+              />
+            </button>
+            <button
+              class="img-btn sound-btn-hover control-btn"
+              onclick="goToControlScreen()"
+            >
+              <img
+                src="img/10_controls/control.png"
+                alt="game console"
+                title="Rules"
+              />
+            </button>
+            <button
+              class="img-btn sound-btn-hover story-btn"
+              onclick="goToBgstoryScreen()"
+            >
+              <img
+                src="img/10_controls/story2.png"
+                alt="story"
+                title="Background Story"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="loading-screen d-none game-screen flex-column"
+          id="loading-screen"
+        >
+          <div class="img-div">
+            <img
+              src="img/3_enemies_chicken/chicken_small/Muestra gif.gif"
+              alt=""
+            />
+          </div>
+          <button class="loading-btn" id="loading-btn"></button>
+        </div>
+        <div
+          class="story-screen d-none game-screen flex-column"
+          id="story-screen"
+        >
+          <button
+            class="img-btn sound-btn sound-btn-hover go-back-btn"
+            onclick="storyScreenGoBack()"
+          >
+            <img src="img/10_controls/back.png" alt="go back" />
+          </button>
+          <div class="story-container">
+            <p id="story-p">Hello, Adventurer, welcome to EL POLLO LOCO.</p>
+          </div>
+          <button
+            id="skip-btn"
+            class="text-btn sound-btn sound-btn-hover skipTyping-btn"
+            onclick="skipTyping()"
+          >
+            Skip
+          </button>
+        </div>
+        <div class="control-screen d-none game-screen flex" id="control-screen">
+          <button
+            class="img-btn sound-btn sound-btn-hover go-back-btn"
+            onclick="goBackToStartScreen()"
+          >
+            <img src="img/10_controls/back.png" alt="go back" />
+          </button>
+
+          <div class="control-screen-container flex-column">
+            <div class="control-screen-title">HOW TO PLAY</div>
+            <div class="control-screen-content flex-column">
+              <div class="control-screen-row">
+                <span>LEFT &nbsp;&nbsp;&nbsp;:</span>
+                <span>A</span>
+              </div>
+              <div class="control-screen-row">
+                <span>RIGHT &nbsp;:</span>
+                <span>D</span>
+              </div>
+              <div class="control-screen-row">
+                <span>JUMP &nbsp;&nbsp;:</span>
+                <span>W</span>
+              </div>
+              <div class="control-screen-row">
+                <span>Shoot &nbsp;:</span>
+                <span>J</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="loading-screen d-none game-screen flex-column"
+          id="loading-screen"
+        >
+          <div class="img-div">
+            <img
+              src="img/3_enemies_chicken/chicken_small/Muestra gif.gif"
+              alt=""
+            />
+          </div>
+          <button class="loading-btn" id="loading-btn">
+            Asserts are loading ... 0%
+          </button>
+        </div>
+        <div class="lost-end-screen game-screen flex" id="lost-end-screen">
+          <button
+            class="text-btn sound-btn sound-btn-hover d-none"
+            onclick="playAgain()"
+          >
+            Once Again
+          </button>
+          <button
+            class="text-btn sound-btn sound-btn-hover d-none"
+            onclick="goBackToHome()"
+          >
+            Home
+          </button>
+        </div>
+        <div class="won-end-screen d-none game-screen flex" id="won-end-screen">
+          <button
+            class="text-btn sound-btn sound-btn-hover d-none"
+            onclick="playAgain()"
+          >
+            Once Again
+          </button>
+          <button
+            class="text-btn sound-btn sound-btn-hover d-none"
+            onclick="goBackToHome()"
+          >
+            Home
+          </button>
+        </div>
+        <div class="confirm-screen d-none game-screen flex" id="confirm-screen">
+          <div class="confirm-overlay in-screen-overlay"></div>
+          <div class="confirm-screen-box flex-column">
+            <p>Are you sure to leave?</p>
+            <div class="flex">
+              <button
+                class="text-btn sound-btn sound-btn-hover"
+                onclick="resumeGame()"
+              >
+                Resume
+              </button>
+              <button
+                id="quit-btn"
+                class="text-btn sound-btn sound-btn-hover"
+                onclick="goBackToHome()"
+              >
+                Quit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        id="legal-notice-btn"
+        class="legal-notice pointer"
+        onclick="window.location.href='legal-notice.html'"
+      >
+        Legal Notice
+      </button>
+    </div>
+  </body>
+  <script src="js/global.js"></script>
+  <script src="js/screen-mananger.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/preloader.js"></script>
+
+  <script src="js/utilities.js"></script>
+  <script src="js/game.js"></script>
+  <script src="models/world.class.js"></script>
+  <script src="models/drawable-object.class.js"></script>
+  <script src="models/movable-object.class.js"></script>
+  <script src="models/collidable-object.class.js"></script>
+  <script src="models/chicken.class.js"></script>
+  <script src="models/small-chicken.class.js"></script>
+  <script src="models/character.class.js"></script>
+  <script src="models/cloud.class.js"></script>
+  <script src="models/background-object.class.js"></script>
+  <script src="models/endboss.class.js"></script>
+  <script src="models/keyboard.class.js"></script>
+  <script src="models/status-bar.class.js"></script>
+  <script src="models/status-bar-endboss.class.js"></script>
+  <script src="models/image-text-bar.class.js"></script>
+  <script src="models/image-text-bar-bottle.class.js"></script>
+  <script src="models/image-text-bar-coin.class.js"></script>
+  <script src="models/throwable-object.class.js"></script>
+  <script src="models/collectable.class.js"></script>
+  <script src="models/coin.class.js"></script>
+  <script src="models/ground-bottle.class.js"></script>
+  <script src="models/level.class.js"></script>
+  <script src="levels/level1.js"></script>
+</html>

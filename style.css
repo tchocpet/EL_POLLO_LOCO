@@ -1,0 +1,343 @@
+
+
+@font-face {
+    font-family: "spiel";
+    src: url('fonts/x12y16pxSolidLinker.ttf') format('truetype');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    height: 100vh;
+    font-family: 'spiel', sans-serif;
+
+    background-image:  url("img/desert.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-container > button {
+    background-color: transparent;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 10px 0;
+
+    align-self: center;
+    
+}
+
+.page-container > button:hover {
+    color: rgba(250, 216, 73)
+}
+
+h1 {
+    font-size: 50px;
+    letter-spacing: 3px;
+    text-shadow: 4px 2px 20px white;
+}
+
+.canvas-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.canvas-screen-top {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    gap: 10px;
+}
+
+.canvas-screen-top .time {
+    font-family: 'Calibri', Courier, monospace;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+
+
+
+.canvas-screen-bottom {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-between;
+    display: none;
+}
+
+.canvas-screen-bottom-left {
+    justify-content: flex-start !important;
+    width: 100%;
+    gap: 20px;
+}
+
+.canvas-screen-bottom-right {
+    justify-content: flex-end !important;
+    width: 100%;
+    gap: 20px;
+}
+
+
+canvas {
+    display: block;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+#canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    pointer-events: none;
+    display: none;
+  }
+
+.content {
+    position: relative;
+  
+}
+
+.rotate-screen {
+    
+    background: rgba(255, 255, 255, 0) center / 100% 100% no-repeat url("img/5_background/first_half_background.png");
+}
+
+.rotate-screen p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 900;
+}
+
+.start-screen {
+    background:  center / 100% 100% no-repeat url("img/9_intro_outro_screens/start/startscreen_1.png");
+    background-color: white !important;
+}
+
+.setting-screen {
+    background: center / 100% 100% no-repeat url("img/5_background/first_half_background.png");
+}
+
+.story-screen {
+    background: center / 100% 100% no-repeat url("img/5_background/first_half_background.png");
+}
+
+.lost-end-screen {
+    gap: 40px;
+    background: center / 70% 70% no-repeat url("img/You won, you lost/You lost.png");
+}
+
+.won-end-screen {
+    gap: 40px;
+    background: center / 80% 80% no-repeat url("img/You won, you lost/You Win A.png");
+}
+
+.lost-end-screen > button, .won-end-screen > button {
+    position: static;
+}
+
+
+.confirm-screen-box {
+    gap: 20px;
+    padding: 20px;
+    z-index: 1;
+
+    background-color: var(--whilte-board-bgcolor);
+    border-radius: 20px;
+}
+
+.confirm-screen-box > div {
+    gap: 20px;
+}
+
+.confirm-screen-box > p {
+    font-size: 1.3rem;
+}
+
+.confirm-screen-box > div > button {
+    position: static;
+}
+
+
+
+#quit-btn {
+    background-color: rgb(210, 81, 81);
+}
+
+.story-container {
+    background-color: var(--whilte-board-bgcolor);
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    border-radius: 20px;
+    max-height: calc(100% - 60px);
+}
+
+.story-container p {
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    height: 100%;
+}
+
+.story-container p::after {
+    content: '|';
+    animation: blink 1s step-start infinite;
+  }
+  
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+.story-screen .skipTyping-btn {
+    left: 20px;
+    top: 20px;
+}
+
+.control-screen {
+    background: center / 100% 100% no-repeat url("img/5_background/first_half_background.png");
+}
+
+.control-screen .go-back-btn {
+    position: absolute;
+    right:20px;
+    top:20px;
+}
+
+.control-screen-container {
+    width: 250px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--whilte-board-bgcolor);
+    gap: 20px;
+}
+
+.control-screen-title {
+    font-size: 30px;
+}
+
+.control-screen-content {
+    width: 100%;
+    gap: 5px;
+}
+
+.control-screen-row {
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.start-screen .start-game-btn {
+    left: 20px;
+    top: 20px;
+}
+
+.start-screen .start-screen-menu{
+    position: absolute;
+    right: 20px;
+    top:20px;
+    gap: 10px;
+}
+
+.start-screen .story-btn {
+}
+
+
+.start-screen .control-btn {
+
+}
+
+
+.loading-screen {
+    background-color: white !important;
+    text-align: center;
+}
+
+
+.loading-screen .loading-btn {
+    
+    background-color: var(--btn-bgcolor);
+    padding: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    min-width: 20%;
+}
+
+@media only screen and (max-width: 760px) {
+    .content {
+        width: 100%;
+    }
+    .canvas-screen-bottom {
+        display: flex;
+    }
+
+    .mobile-control-btn {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .rotate-screen p {
+       font-size: 2rem;
+    }
+
+    .mobile-control-btn {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media  only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    .legal-notice {
+        display: none;;
+    }
+
+    .mobile-control-btn {
+        width: 45px;
+        height: 45px;
+    }
+   
+}
+
+@media  only screen and (max-height: 420px) {
+     .mobile-control-btn {
+        width: 40px;
+        height: 40px;
+    }
+   
+}
+
+

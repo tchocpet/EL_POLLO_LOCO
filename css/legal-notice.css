@@ -1,0 +1,86 @@
+
+body {
+    background-repeat: repeat;
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    font-weight: 600;
+}
+
+.legal-notice-container {
+    padding: 50px;
+}
+
+.go-back {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    left: 55px;
+    top: 55px;
+}
+
+.legal-notice-container h1{
+    text-align: center;
+}
+
+.legal-notice-subcontainer {
+    margin-top: 20px;
+}
+
+.legal-notice-container h2{
+    margin: 10px 0;
+}
+
+.legal-notice-container p {
+    margin: 10px 0;
+}
+
+@media screen and (max-width:900px) {
+    .legal-notice-container {
+        padding: 20px;
+    }
+    
+    .legal-notice-container h1{
+        font-size: 32px;
+    }
+
+    .legal-notice-container h2{
+        font-size: 25px;
+    }
+
+    .go-back {
+        width: 24px;
+        height: 24px;
+        left: 26px;
+        top: 26px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .legal-notice-container {
+        padding: 15px;
+    }
+    
+    .legal-notice-container h1{
+        font-size: 25px;
+        letter-spacing: normal;
+    }
+
+    .legal-notice-container h2{
+        font-size: 22px;
+    }
+
+    .legal-notice-container h3{
+        font-size: 18px;
+    }
+
+    .go-back {
+        width: 24px;
+        height: 24px;
+        left: 15px;
+        top: 18px;
+    }
+}
+
+
+
+
